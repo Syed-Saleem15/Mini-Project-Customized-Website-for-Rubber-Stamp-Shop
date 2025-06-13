@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .cart-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item h4 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .cart-item input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .cart-item .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cart-item button {
+            padding: 8px 15px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-item button:hover {
+            background-color: #0056b3;
+        }
+
+        .cart-item .remove-btn {
+            background-color: #dc3545;
+        }
+
+        .cart-item .remove-btn:hover {
+            background-color: #b02a37;
+        }
+
+        .cart-footer {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .cart-footer button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-footer button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <div class="cart-container">
+        <form method="POST" action="{{ url_for('update_cart') }}">
+            {% for item in cart_items %}
+            <div class="cart-item">
+                <img src="{{ item.product.image }}" alt="{{ item.product.name }}">
+                <div class="item-details">
+                    <h4>{{ item.product.name }}</h4>
+                    <p>Price: {{ item.product.price }}</p>
+                    <label>
+                        Quantity:
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1" required>
+                    </label>
+                    <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                </div>
+                <div class="actions">
+                    <button type="submit">Update Quantity</button>
+                    <form method="POST" action="{{ url_for('remove_item', product_id=item.product.id) }}">
+                        <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </form>
+
+        <!-- Footer Section -->
+        <div class="cart-footer">
+            <button onclick="alert('Checkout feature is coming soon!')">Proceed to Checkout</button>
+        </div>        
+        
+    </div>
+</body>
+</html>

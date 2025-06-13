@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 32px;
+        }
+        h2 {
+            text-align: center;
+            color: #28a745;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .order-details {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .order-details p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .order-details p strong {
+            color: #333;
+        }
+        .view-products {
+            display: inline-block;
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px 25px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .view-products:hover {
+            background-color: #0056b3;
+        }
+        .thank-you-note {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Confirmation</h1>
+        
+        <h2>Your Order has been placed successfully!</h2>
+        
+        <div class="order-details">
+            <p><strong>Product:</strong> {{ product.name }}</p>
+            <p><strong>Price:</strong> {{ product.price }}</p>
+            <p><strong>Payment Method:</strong> {{ payment_method }}</p>
+        </div>
+        
+        <p class="thank-you-note">Thank you for shopping with us! Your order is being processed and will be shipped soon.</p>
+        
+        <a href="{{ url_for('home') }}" class="view-products">Go to Home</a>
+    </div>
+</body>
+</html>

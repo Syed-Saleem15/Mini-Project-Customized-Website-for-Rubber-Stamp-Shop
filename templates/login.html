@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* General Styling */
+        body.login-page {
+            background: url('/static/back.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Semi-transparent overlay */
+        .login-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
+            z-index: -1;
+        }
+
+        /* Login container styling */
+        .login-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 350px;
+            width: 90%;
+        }
+
+        /* Input fields */
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container input:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.7);
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .button:hover {
+            background-color: #184d1a;
+        }
+
+        .clear-button {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        /* Sign Up link */
+        .sign-up-link {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .sign-up-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Error message */
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="login-page">
+    <!-- Blurred overlay -->
+    <div class="login-overlay"></div>
+
+    <div class="login-container">
+        <h1>LOGIN</h1>
+        <p>Please log in to access the product page</p>
+        <!-- Login Form -->
+        <form action="{{ url_for('login') }}" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            {% if error %}
+            <p class="error-message">{{ error }}</p>
+            {% endif %}
+            <button type="submit" class="button">Log In</button>
+            <button type="reset" class="button clear-button">Clear</button>
+        </form>
+
+        <!-- Sign Up Link -->
+        <a href="{{ url_for('sign_up') }}" class="sign-up-link">Don't have an account? Sign up here.</a>
+    </div>
+</body>
+</html>

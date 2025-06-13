@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Screen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #4CAF50;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .splash-container {
+            animation: fadeOut 3s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <h1>Welcome to the MC Rubber Stamp Shop!</h1>
+        <p>Loading your experience...</p>
+    </div>
+    <script>
+        setTimeout(() => {
+            window.location.href = "{{ url_for('login') }}";
+        }, 2000); // 3-second delay
+    </script>
+    
+</body>
+</html>

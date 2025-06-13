@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now - {{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirm Purchase</h1>
+        <p><strong>Product:</strong> {{ product.name }}</p>
+        <p><strong>Price:</strong> {{ product.price }}</p>
+
+        <form action="{{ url_for('buy_now', product_id=product.id) }}" method="POST">
+            <h3>Choose Payment Method</h3>
+            <select name="payment_method" required>
+                <option value="" disabled selected>Select a payment method</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="cash_on_delivery">Cash on Delivery</option>
+                <option value="bank_transfer">Bank Transfer</option>
+                <option value="upi">UPI (Mock)</option>
+            </select>
+
+            <p><strong>Confirm your order:</strong></p>
+            <button type="submit">Place Order</button>
+        </form>
+
+        <p class="note">This is a demo representation of the payment process. No actual transactions will occur.</p>
+    </div>
+</body>
+</html>

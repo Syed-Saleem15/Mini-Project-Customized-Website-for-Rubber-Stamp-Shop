@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        .add-product-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-product-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .add-product-container input,
+        .add-product-container textarea,
+        .add-product-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-product-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-product-container button:hover {
+            background-color: #184d1a;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="add-product-container">
+        <h1>Add Product</h1>
+        <form action="{{ url_for('add_product') }}" method="post" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Product Name" required>
+            <textarea name="description" placeholder="Product Description" required></textarea>
+            <input type="number" name="price" placeholder="Price (per unit)" required step="0.01">
+            <input type="number" name="quantity" placeholder="Quantity" required min="0">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>

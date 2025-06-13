@@ -1,0 +1,257 @@
+* {
+    margin: auto;
+    padding: auto;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Cart Page Styles */
+.cart-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.cart-item .item-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    flex: 1;
+    text-align: left;
+}
+
+.cart-item .item-price,
+.cart-item .item-quantity {
+    font-size: 1em;
+    color: #333;
+    margin: 0 10px;
+}
+
+.remove-btn {
+    color: #d9534f;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.remove-btn:hover {
+    text-decoration: underline;
+}
+
+/* Empty Cart Message */
+.empty-cart-message {
+    font-size: 1.2em;
+    color: #777;
+    margin: 20px 0;
+}
+
+/* Continue Shopping Button */
+.continue-shopping {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: #5bc0de;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.continue-shopping:hover {
+    background-color: #31b0d5;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background: url("/static/stamp.jpg") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+@media (max-width: 768px) {
+    .container {
+        margin: 50px 20px;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .view-products {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body::before {
+    width: 400px; /* Responsive size */
+    height: 400px;
+    opacity: 0.08;
+}
+
+.product:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+/* Main container styling */
+.container {
+    max-width: 800px;
+    margin: 150px auto; /* Adjust margin to bring it down vertically */
+    padding: 20px;
+    background: url(stamp.jpg);
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    z-index: 20; /* Ensures text stays above any background images */
+}
+
+/* Heading styling */
+h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+/* Paragraph styling */
+p {
+    color: #555;
+    font-size: 18px;
+}
+
+/* View products link */
+.view-products {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.view-products:hover {
+    background-color: #0056b3;
+}
+
+/* Cart icon styling */
+.cart {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures the cart stays above all elements */
+}
+
+.cart a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.cart img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+/* Cart hover effect */
+.cart a:hover {
+    color: #007bff;
+}
+
+/* Stamp image behind the text */
+body::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px; 
+    background: url('/static/stamp.jpg') no-repeat center;
+    background-size: contain;
+    opacity: 0.1;
+    z-index: 18;
+    transform: translate(-50%, -50%);
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 250px;
+    margin: 20px;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.view-product {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.view-product:hover {
+    background-color: #0056b3;
+}
+
+.pagination {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+
+.pagination span {
+    margin: 0 10px;
+}

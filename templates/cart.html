@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Your Cart</h1>
+        {% if cart_items %}
+            <ul class="cart-list">
+                {% for item in cart_items %}
+                    <li class="cart-item">
+                        <span class="item-name">{{ item.name }}</span>
+                        <span class="item-price">Rs.{{ item.price }}</span>
+
+                        <!-- Quantity Input and Update Button -->
+                        <form action="{{ url_for('update_cart', product_id=item.id) }}" method="POST" class="quantity-form">
+                            <label for="quantity-{{ item.id }}">Quantity:</label>
+                            <input type="number" id="quantity-{{ item.id }}" name="quantity" value="{{ item.quantity }}" min="1" required>
+                            <button type="submit" class="update-btn">Update</button>
+                        </form>
+
+                        <!-- Updated Price after Quantity Change -->
+                        <span class="updated-price">Total: Rs.{{ item.price * item.quantity }}</span>
+
+                        <a href="{{ url_for('remove_from_cart', product_id=item.id) }}" class="remove-btn">Remove</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('products_page') }}" class="continue-shopping">Continue Shopping</a>
+        {% else %}
+            <p class="empty-cart-message">Your cart is empty!</p>
+            <a href="{{ url_for('products_page') }}" class="continue-shopping">Browse Products</a>
+        {% endif %}
+    </div>
+</body>
+</html>

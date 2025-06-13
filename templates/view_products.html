@@ -1,0 +1,54 @@
+<h1>Product List</h1>
+<style>
+    .add-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.add-button:hover {
+    background-color: #45a049;
+}
+
+</style>
+<!-- Add Product Button -->
+{% if session.get('is_admin') %}
+    <a href="{{ url_for('add_product') }}" class="add-button">Add Product</a>
+{% endif %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td><img src="{{ url_for('static', filename=product.image) }}" width="100" alt="Product Image"></td>
+            <td>
+                <!-- Only show "Edit" and "Delete" for admin -->
+                {% if session.get('is_admin') %}
+                    <a href="{{ url_for('edit_product', id=product.id) }}">Edit</a>
+                    <form action="{{ url_for('delete_product', id=product.id) }}" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

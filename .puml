@@ -1,0 +1,10 @@
+@startuml name
+actor User
+actor Admin
+usecase "Login"
+usecase "View Dashboard"
+usecase "Manage Users"
+User --> "Login"
+Admin --> "Manage Users"
+"Login" --> "View Dashboard"
+@enduml

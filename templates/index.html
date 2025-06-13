@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubber Stamp Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4c9daf;
+            color: white;
+        }
+
+        .header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .header .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .header .nav-buttons a,
+        .header .nav-buttons button {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            padding: 8px 12px;
+            background-color: #6dcff6;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .header .nav-buttons a:hover,
+        .header .nav-buttons button:hover {
+            background-color: #59d59d;
+            transform: scale(1.05);
+        }
+
+        /* Main Container */
+        .container {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .container h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .container p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .container a.view-products {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .container a.view-products:hover {
+            background-color: #184d1a;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 50px 20px;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #4c9daf;
+        }
+
+        section p {
+            font-size: 1rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        /* About Us Section Styling */
+    #about-us {
+        background-color: #e9f7fa;
+        padding: 40px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 800px;
+        text-align: center;
+    }
+
+    #about-us h2 {
+        font-size: 2rem;
+        color: #3a869a;
+        margin-bottom: 15px;
+    }
+
+    #about-us p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.8;
+    }
+
+    /* Contact Us Section Styling */
+    #contact-us {
+        background-color: #faf3e9;
+        padding: 40px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 800px;
+        text-align: center;
+    }
+
+    #contact-us h2 {
+        font-size: 2rem;
+        color: #d5a65c;
+        margin-bottom: 15px;
+    }
+
+    #contact-us p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.8;
+    }
+
+    /* Highlight Links Inside Sections */
+    #contact-us a {
+        color: #3a869a;
+        text-decoration: underline;
+    }
+
+    #contact-us a:hover {
+        color: #184d1a;
+    }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #4c9daf;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">Rubber Stamp Shop</div>
+        <div class="nav-buttons">
+            <a href="{{ url_for('about_us') }}">About Us</a>
+            <a href="{{ url_for('contact_us') }}">Contact Us</a>
+            <a href="{{ url_for('cart_page') }}" class="cart-icon">
+                <img src="{{ url_for('static', filename='cart-icon.jpg') }}" alt="Cart" style="width: 20px; height: 20px; margin-right: 5px;"> Cart
+            </a>
+            <form action="{{ url_for('logout') }}" method="get" style="margin: 0; display: inline;">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to Rubber Stamp Shop!</h1>
+        <p>Your one-stop shop for customized rubber stamps.</p>
+        <a href="{{ url_for('products_page') }}" class="view-products">View Products</a>
+        {% if is_admin %}
+        <!-- Add Product Button for Admin -->
+        <a href="{{ url_for('add_product') }}">
+            <button style="background-color: rgb(0, 47, 128); color: white; padding: 10px; border: none; cursor: pointer;">
+                Add Product
+            </button>
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- About Us Section -->
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>
+            Welcome to Rubber Stamp Shop, where we specialize in creating high-quality, customized rubber stamps 
+            for businesses and personal use. With a commitment to quality and customer satisfaction, we aim to 
+            provide stamps that meet your exact requirements.
+        </p>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact-us">
+        <h2>Contact Us</h2>
+        <p>
+            Got questions? Reach out to us! <br>
+            Email: support@mcrubberstampshop.com <br>
+            Phone:  +91-123456789<br>
+            Address: Mc Rubber Stamp Makers, Kammavaripete Road, 
+            Hoskote, Bangalore - 562114 (Behind Mini Vidhana Soudha)
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Rubber Stamp Shop. All rights reserved. <br>
+            <a href="{{ url_for('about_us') }}">About Us</a> | 
+            <a href="{{ url_for('contact_us') }}">Contact Us</a>
+        </p>
+    </footer>
+</body>
+</html>
